@@ -18,10 +18,27 @@ describe Rover do
 
   describe 'Checks initialisation.' do
     it 'Specifically the co-ordinates of rover when initialised.' do
-      expect(@rover1.facing).to eq 'N'
-      expect(@rover2.facing).to eq 'E'
+      expect(@rover1.direction).to eq 'N'
+      expect(@rover2.direction).to eq 'E'
     end
   end
 
+  describe 'Checks #turn_left method.' do
+    it 'Changes the .direction attribute so that the rover turns left' do
+        @rover1.turn_left
+        @rover2.turn_left
+        expect(@rover1.direction).to eq 'W'
+        expect(@rover2.direction).to eq 'N'
+    end
+  end
+
+  describe 'Checks #turn_right method.' do
+    it 'Changes the .direction attribute so that the rover turns right' do
+        @rover1.turn_right
+        @rover2.turn_right
+        expect(@rover1.direction).to eq 'E'
+        expect(@rover2.direction).to eq 'S'
+    end
+  end
 
 end
