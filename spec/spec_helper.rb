@@ -100,7 +100,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-require_relative '../lib/command.rb'
+require_relative '../lib/houston_command.rb'
 require_relative '../lib/plateu.rb'
 require_relative '../lib/rover.rb'
 end

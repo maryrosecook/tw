@@ -41,4 +41,11 @@ describe Rover do
     end
   end
 
+  describe 'Checks #move method' do
+    it 'Changes the position of the rover by one' do
+      expect { @rover1.move }.to change{@rover1.y}.by(1)
+      expect { @rover2.move }.to change{@rover2.x}.by(1)
+    end
+  end
+
 end

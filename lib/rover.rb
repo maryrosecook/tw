@@ -7,6 +7,14 @@ class Rover
     @direction = direction
   end
 
+  def move
+    if @direction == 'N' || @direction == 'S'
+      @y += 1
+    else
+      @x += 1
+    end
+  end
+
 
   def turn_left
     case @direction
