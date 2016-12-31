@@ -1,5 +1,5 @@
 class Rover
-  attr_accessor :x, :y, :direction
+  attr_accessor :x, :y, :direction, :move
 
   def initialize(x,y,direction)
     @x = x
