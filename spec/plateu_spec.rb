@@ -8,8 +8,8 @@ describe Plateu do
 
     describe 'Check the initialisation of plateu' do
       it 'Expects the plateu to be the correct size' do
-        expect(@plateu.length).to eq 5
-        expect(@plateu[0].length).to eq 5
+        expect(@plateu.plateu.length).to eq 5
+        expect(@plateu.plateu[0].length).to eq 5
     end
   end
 
