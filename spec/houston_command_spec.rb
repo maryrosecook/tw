@@ -16,10 +16,17 @@ describe Houston_command do
     end
   end
 
-  describe 'Checks #rover_move method' do
-    it 'expects rover to return updated position' do
+  describe 'Checks #rover_turn_left method' do
+    it 'expects rover to return updated direction' do
       expect { @houston_command.rover_turn_left(@rover1) }.to change{ @rover1.direction }.from('N').to('W')
-      expect { @houston_command.rover_turn_left(@rover2) }.to change{ @rover2.direction }.from('E').to('S')
+      expect { @houston_command.rover_turn_left(@rover2) }.to change{ @rover2.direction }.from('E').to('N')
+    end
+  end
+
+  describe 'Checks #rover_turn_right method' do
+    it 'expects rover to return updated direction' do
+      expect { @houston_command.rover_turn_right(@rover1) }.to change{ @rover1.direction }.from('N').to('E')
+      expect { @houston_command.rover_turn_right(@rover2) }.to change{ @rover2.direction }.from('E').to('S')
     end
   end
 
