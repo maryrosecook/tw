@@ -9,4 +9,8 @@ class Houston_command
     rover.turn_left
   end
 
+  def rover_turn_right(rover)
+    rover.turn_right
+  end
+
 end

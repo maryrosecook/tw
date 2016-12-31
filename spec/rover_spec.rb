@@ -48,4 +48,14 @@ describe Rover do
     end
   end
 
+
+  describe 'Checks #status method' do
+    it 'Expects the rover to return its position' do
+      expect { @rover1.position }.to output{'1,3,N'}.to_stdout
+      expect { @rover2.position }.to output{'3,3,E'}.to_stdout
+    end
+  end
+
+
+
 end
