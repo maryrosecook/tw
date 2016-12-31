@@ -1,6 +1,5 @@
 class Houston_command
 
-
   def rover_move(rover)
     rover.move
   end
@@ -11,6 +10,10 @@ class Houston_command
 
   def rover_turn_right(rover)
     rover.turn_right
+  end
+
+  def position_of(rover)
+    rover.position
   end
 
 end

@@ -46,4 +46,8 @@ class Rover
     end
   end
 
+  def position
+    p "The position of rover is #{@x}, #{@y}, #{@direction}"
+  end
+
 end
