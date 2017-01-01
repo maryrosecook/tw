@@ -3,8 +3,10 @@ require_relative 'spec_helper'
 describe Rover do
 
   before(:each) do
-    @rover1 = Rover.new(1,3,'N')
-    @rover2 = Rover.new(3,3,'E')
+    @rover1 = Rover.new('rover1',1,3,'N')
+    @rover2 = Rover.new('rover2',3,3,'E')
+    @rover3 = Rover.new('rover1',1,3,'S')
+    @rover4 = Rover.new('rover2',3,3,'W')
   end
 
   describe 'Checks initialisation.' do
@@ -13,6 +15,9 @@ describe Rover do
       expect(@rover2.x).to eq 3
       expect(@rover1.y).to eq 3
       expect(@rover2.y).to eq 3
+      expect(@rover1.name).to eq 'rover1'
+      expect(@rover2.name).to eq 'rover2'
+
     end
   end
 
@@ -42,9 +47,23 @@ describe Rover do
   end
 
   describe 'Checks #move method' do
-    it 'Changes the position of the rover by one' do
+    it 'Changes the position of the rover by one when direction is north or east' do
       expect { @rover1.move }.to change{@rover1.y}.by(1)
       expect { @rover2.move }.to change{@rover2.x}.by(1)
+    end
+  end
+
+  describe 'Checks #move method' do
+    it 'Changes the position of the rover by one when direction is south or west' do
+      expect { @rover3.move }.to change{@rover3.y}.from(3).to(2)
+      expect { @rover4.move }.to change{@rover4.x}.from(3).to(2)
+    end
+  end
+
+  describe 'Checks #move method' do
+    it 'Expects and error message when the bot reaches the edge of the plateu' do
+      expect{ @rover3.move }.to raise_error "I'm on the edge of the plateu! Turn me around!"
+      expect{ @rover4.move }.to raise_error "I'm on the edge of the plateu! Turn me around!"
     end
   end
 

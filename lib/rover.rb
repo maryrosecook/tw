@@ -1,19 +1,27 @@
 class Rover
-  attr_accessor :x, :y, :direction, :move
+  attr_accessor :name, :x, :y, :direction, :move
 
-  def initialize(x,y,direction)
+  def initialize(name,x,y,direction)
+    @name = name
     @x = x
     @y = y
     @direction = direction
   end
 
   def move
-    if @direction == 'N' || @direction == 'S'
+    case @direction
+    when 'N'
       @y += 1
-    else
+    when 'S'
+      @y -= 1
+    when 'E'
       @x += 1
+    when 'W'
+      @x -= 1
     end
   end
+
+  
 
 
   def turn_left

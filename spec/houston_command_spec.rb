@@ -4,8 +4,8 @@ describe Houston_command do
 
   before(:each) do
     @houston_command = Houston_command.new
-    @rover1 = Rover.new(1,3,'N')
-    @rover2 = Rover.new(3,3,'E')
+    @rover1 = Rover.new('rover1',1,3,'N')
+    @rover2 = Rover.new('rover2',3,3,'E')
   end
 
   describe 'Tests for movement methods' do
