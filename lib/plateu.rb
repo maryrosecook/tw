@@ -15,8 +15,8 @@ class Plateu
   end
 
   def print_plateu
-    width = @plateu.flatten.max.size+2
-    puts @plateu.map { |x| x.map { |n| n.rjust(width)}.join }
+    width = @plateu.flatten.reverse.max.size+2
+    puts @plateu.reverse.map { |x| x.map { |n| n.rjust(width)}.join }
   end
 
 end
