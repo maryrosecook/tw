@@ -8,20 +8,24 @@ class Rover
     @direction = direction
   end
 
-  def move
-    case @direction
-    when 'N'
-      @y += 1
-    when 'S'
-      @y -= 1
-    when 'E'
-      @x += 1
-    when 'W'
-      @x -= 1
-    end
+  def move(plateu)
+      case @direction
+      when 'N'
+        raise "I'm on the edge of the plateu! Turn me around!" if @y == plateu.plateu.length
+        @y += 1
+      when 'S'
+        raise "I'm on the edge of the plateu! Turn me around!" if @y == 0
+        @y -= 1
+      when 'E'
+        raise "I'm on the edge of the plateu! Turn me around!" if @x == plateu.plateu[0].length
+        @x += 1
+      when 'W'
+        raise "I'm on the edge of the plateu! Turn me around!" if @x == 0
+        @x -= 1
+      end
   end
 
-  
+
 
 
   def turn_left

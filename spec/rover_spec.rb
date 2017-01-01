@@ -7,6 +7,7 @@ describe Rover do
     @rover2 = Rover.new('rover2',3,3,'E')
     @rover3 = Rover.new('rover1',1,3,'S')
     @rover4 = Rover.new('rover2',3,3,'W')
+    @plateu = Plateu.new(5,5)
   end
 
   describe 'Checks initialisation.' do
@@ -48,15 +49,15 @@ describe Rover do
 
   describe 'Checks #move method' do
     it 'Changes the position of the rover by one when direction is north or east' do
-      expect { @rover1.move }.to change{@rover1.y}.by(1)
-      expect { @rover2.move }.to change{@rover2.x}.by(1)
+      expect { @rover1.move(@plateu) }.to change{@rover1.y}.by(1)
+      expect { @rover2.move(@plateu) }.to change{@rover2.x}.by(1)
     end
   end
 
   describe 'Checks #move method' do
     it 'Changes the position of the rover by one when direction is south or west' do
-      expect { @rover3.move }.to change{@rover3.y}.from(3).to(2)
-      expect { @rover4.move }.to change{@rover4.x}.from(3).to(2)
+      expect { @rover3.move(@plateu) }.to change{@rover3.y}.from(3).to(2)
+      expect { @rover4.move(@plateu) }.to change{@rover4.x}.from(3).to(2)
     end
   end
 
@@ -65,11 +66,11 @@ describe Rover do
       @rover1.y = 4
       @rover2.x = 4
       @rover3.y = 0
-      @rover4.x = 0 
-      expect{ @rover1.move }.to raise_error "I'm on the edge of the plateu! Turn me around!"
-      expect{ @rover2.move }.to raise_error "I'm on the edge of the plateu! Turn me around!"
-      expect{ @rover3.move }.to raise_error "I'm on the edge of the plateu! Turn me around!"
-      expect{ @rover4.move }.to raise_error "I'm on the edge of the plateu! Turn me around!"
+      @rover4.x = 0
+      expect{ @rover1.move(@plateu) }.to raise_error "I'm on the edge of the plateu! Turn me around!"
+      expect{ @rover2.move(@plateu) }.to raise_error "I'm on the edge of the plateu! Turn me around!"
+      expect{ @rover3.move(@plateu) }.to raise_error "I'm on the edge of the plateu! Turn me around!"
+      expect{ @rover4.move(@plateu) }.to raise_error "I'm on the edge of the plateu! Turn me around!"
     end
   end
 

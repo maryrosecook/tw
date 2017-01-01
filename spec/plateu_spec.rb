@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 describe Plateu do
 
     before(:each) do
-      @plateu = Plateu.new(5,5)
+      @plateu = Plateu.new(6,5)
       @rover1 = Rover.new('rover1',1,3,'N')
       @rover2 = Rover.new('rover2',3,3,'E')
     end

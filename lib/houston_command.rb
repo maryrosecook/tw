@@ -1,7 +1,7 @@
 class Houston_command
 
-  def rover_move(rover)
-    rover.move
+  def rover_move(rover, plateu)
+    rover.move(plateu)
   end
 
   def rover_turn_left(rover)
