@@ -3,10 +3,10 @@ class Plateu
 
   def initialize(x,y)
     @plateu = []
-    x.times { @plateu << x = [] }
+    y.times { @plateu << [] }
 
-    @plateu.each do |x|
-      y.times { x << 'x' }
+    @plateu.each do |n|
+      x.times { n << 'x' }
     end
   end
 

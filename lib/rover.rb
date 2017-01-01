@@ -9,19 +9,33 @@ class Rover
   end
 
   def move(plateu)
+    @plateu = plateu
+
       case @direction
       when 'N'
-        raise "I'm on the edge of the plateu! Turn me around!" if @y == plateu.plateu.length
-        @y += 1
+        if @y == @plateu.plateu.length
+          raise "I'm on the edge of the plateu! Turn me around!"
+        else
+          @y += 1
+        end
       when 'S'
-        raise "I'm on the edge of the plateu! Turn me around!" if @y == 0
-        @y -= 1
+        if @y == 0
+          raise "I'm on the edge of the plateu! Turn me around!"
+        else
+          @y -= 1
+        end
       when 'E'
-        raise "I'm on the edge of the plateu! Turn me around!" if @x == plateu.plateu[0].length
-        @x += 1
+        if @x == @plateu.plateu[0].length
+          raise "I'm on the edge of the plateu! Turn me around!"
+        else
+          @x += 1
+        end
       when 'W'
-        raise "I'm on the edge of the plateu! Turn me around!" if @x == 0
-        @x -= 1
+        if @x == 0
+          raise "I'm on the edge of the plateu! Turn me around!"
+        else
+          @x -= 1
+        end
       end
   end
 

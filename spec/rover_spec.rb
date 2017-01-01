@@ -63,8 +63,8 @@ describe Rover do
 
   describe 'Checks #move method' do
     it 'Expects and error message when the bot reaches the edge of the plateu' do
-      @rover1.y = 4
-      @rover2.x = 4
+      @rover1.y = 5
+      @rover2.x = 5
       @rover3.y = 0
       @rover4.x = 0
       expect{ @rover1.move(@plateu) }.to raise_error "I'm on the edge of the plateu! Turn me around!"
