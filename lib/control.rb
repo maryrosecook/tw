@@ -2,19 +2,48 @@ class Control
   require_relative './plateu'
   require_relative './rover'
   require_relative './houston_command'
-  attr_accessor :x, :y, :plateu, :rover, :commands
+  attr_accessor :x, :y, :plateu, :rover, :commands, :command_array
 
-  def interface(string)
+  def command_rover(string)
+    set_up_array(string)
+    set_up_plateu_and_delete
+    set_up_rover_and_send_commands
+     while check_for_commands(@command_array)
+       reset_rover_and_send_commands
+     end
+  end
+
+
+  def set_up_array(string)
     @command_array = string
     @command_array = @command_array.split(',')
+  end
+
+  def set_up_plateu_and_delete
     set_up_plateu(@command_array)
     delete_first_two(@command_array)
+  end
+
+  def set_up_rover_and_send_commands
     co_ordinates_for_rover(@command_array)
     delete_first_three(@command_array)
     commands_for_rover(@command_array)
-    @rover.position
-    delete_commands(@command_array)
+    rover.position
+    @command_array = delete_commands(@command_array)
   end
+
+  def check_for_commands(array)
+    array.length > 0
+  end
+
+  def reset_rover_and_send_commands
+    reset_rover(@command_array)
+    delete_first_three(@command_array)
+    commands_for_rover(@command_array)
+    rover.position
+    @command_array = delete_commands(@command_array)
+  end
+
 
 
   def co_ordinates_for_rover(array)
@@ -26,18 +55,15 @@ class Control
   end
 
   def delete_first_two(array)
-    array.delete_at(0)
-    array.delete_at(1)
+    2.times { array.delete_at(0) }
   end
 
   def delete_first_three(array)
-    array.delete_at(0)
-    array.delete_at(1)
-    array.delete_at(2)
+    3.times { array.delete_at(0) }
   end
 
   def delete_commands(array)
-    array = array.drop_while { |x| x == 'R' || x == 'L' || x == 'M' }
+    array.drop_while { |x| x == 'R' || x == 'L' || x == 'M' }
   end
 
   def set_up_plateu(array)
@@ -48,7 +74,12 @@ class Control
 
   def set_up_rover(array)
     @rover = Rover.new('rover', array[0], array[1], array[2])
-    @rover.position
+  end
+
+  def reset_rover(array)
+    @rover.x = array[0].to_i
+    @rover.y = array[1].to_i
+    @rover.direction = array[2]
   end
 
   def commands_for_rover(array)

@@ -13,33 +13,19 @@ class Rover
 
       case @direction
       when 'N'
-        if @y == @plateu.plateu.length
-          raise "I'm on the edge of the plateu! Turn me around!"
-        else
+        raise "I'm on the edge of the plateu! Turn me around!" if @y == @plateu.plateu.length
           @y += 1
-        end
       when 'S'
-        if @y == 0
-          raise "I'm on the edge of the plateu! Turn me around!"
-        else
+        raise "I'm on the edge of the plateu! Turn me around!" if @y == 0
           @y -= 1
-        end
       when 'E'
-        if @x == @plateu.plateu[0].length
-          raise "I'm on the edge of the plateu! Turn me around!"
-        else
+        raise "I'm on the edge of the plateu! Turn me around!" if @x == @plateu.plateu[0].length
           @x += 1
-        end
       when 'W'
-        if @x == 0
-          raise "I'm on the edge of the plateu! Turn me around!"
-        else
+        raise "I'm on the edge of the plateu! Turn me around!"  if @x == 0
           @x -= 1
-        end
       end
   end
-
-
 
 
   def turn_left

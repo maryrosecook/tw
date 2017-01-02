@@ -5,7 +5,19 @@ describe Control do
   before(:each) do
     @control = Control.new
     @command_array = ["5", "5", "1", "2", "N", "L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
-    #@control.interface("5,5,1,2,N,L,M,L,M,L,M,L,M,M,3,3,E,M,M,R,M,M,R,M,R,R,M")
+  end
+
+  describe '#command_rover' do
+    it 'it expects to have the correct co-ordinates for the rover printed' do
+    expect { @control.command_rover("5,5,1,2,N,L,M,L,M,L,M,L,M,M,3,3,E,M,M,R,M,M,R,M,R,R,M") }.to output("\"The position of rover is 1, 3, N\"\n\"The position of rover is 5, 1, E\"\n").to_stdout
+    end
+  end
+
+  describe '#set_up_array' do
+    it 'it expects set up the array' do
+      @control.set_up_array("5,5,1,2,N,L,M,L,M,L,M,L,M,M,3,3,E,M,M,R,M,M,R,M,R,R,M")
+      expect(@command_array).to eq ["5", "5", "1", "2", "N", "L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
+    end
   end
 
   describe '#set_up_plateu' do
@@ -22,12 +34,19 @@ describe Control do
     end
   end
 
-  describe '#delete_first_two' do
+  describe '#delete_first_three' do
     it 'it expects that command array will change by two' do
       expect { @control.delete_first_three(@command_array) }.to change{ @command_array.length }.by -3
     end
   end
 
+  describe '#delete_commands' do
+    it 'it expects that command array will change by two' do
+      @command_array = ["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
+      @command_array = @control.delete_commands(@command_array)
+      expect(@command_array[0]).to eq "3"
+    end
+  end
 
   describe '#co_ordinates_for_rover and #set_up_rover' do
     it 'it expects the rover to be set up in the correct position' do
@@ -48,36 +67,4 @@ describe Control do
     end
   end
 
-#   describe 'Checks that control has initialized everything' do
-#     it 'It expects plateu to be the correct size.' do
-#       expect(@control.plateu.plateu.length).to eq 5
-#       expect(@control.plateu.plateu[0].length).to eq 5
-#     end
-#
-#     it 'It expects the first rover to have the correct co-oridinates.' do
-#       expect(@rover1.x).to eq 1
-#       expect(@rover1.x).to eq 2
-#       expect(@rover1.direction).to eq 'N'
-#     end
-#   end
-#
-#   it 'It expects the second rover to have the correct co-oridinates.' do
-#     expect(@rover2.x).to eq 3
-#     expect(@rover2.x).to eq 3
-#     expect(@rover2.direction).to eq 'E'
-#   end
-# end
-#
-# describe 'Checks that the move and turn functions work' do
-#   it 'It expects the finishing co-ordinates for the first rover to be correct' do
-#     expect(@rover1.x).to eq 3
-#     expect(@rover1.x).to eq 3
-#     expect(@rover1.direction).to eq 'E'
-#   end
-#
-#   it 'It expects the finishing co-ordinates for the first rover to be correct'do
-#     expect(@rover2.x).to eq 3
-#     expect(@rover2.x).to eq 3
-#     expect(@rover2.direction).to eq 'E'
-#   end
 end

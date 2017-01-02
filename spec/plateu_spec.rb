@@ -22,9 +22,4 @@ describe Plateu do
     end
   end
 
-  # describe 'Checks the #print_plateu method' do
-  #   it 'It expects it to print out the plateu with the rover direction', :focus => true do
-  #     expect { @plateu.print_plateu }.to output{  }.to_stdout
-  #   end
-  # end
 end
