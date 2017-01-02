@@ -22,6 +22,31 @@ describe Control do
     end
   end
 
+  describe '#delete_first_two' do
+    it 'it expects that command array will change by two' do
+      expect { @control.delete_first_three(@command_array) }.to change{ @command_array.length }.by -3
+    end
+  end
+
+
+  describe '#co_ordinates_for_rover and #set_up_rover' do
+    it 'it expects the rover to be set up in the correct position' do
+      @control.co_ordinates_for_rover(['1','1','N'])
+      expect(@control.rover.x).to eq 1
+      expect(@control.rover.y).to eq 1
+      expect(@control.rover.direction).to eq 'N'
+    end
+  end
+
+  describe '#commands_for_rover' do
+    it 'it expects the commands to be sent to the rover' do
+      @control.set_up_rover([1,2,'N'])
+      @control.set_up_plateu([5,5])
+      @control.commands_for_rover(["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"])
+      expect(@control.commands).to eq(["L", "M", "L", "M", "L", "M", "L", "M", "M"])
+      expect(@control.rover.position).to eq "The position of rover is 1, 3, N"
+    end
+  end
 
 #   describe 'Checks that control has initialized everything' do
 #     it 'It expects plateu to be the correct size.' do
