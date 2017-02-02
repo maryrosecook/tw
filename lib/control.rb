@@ -5,7 +5,7 @@ class Control
   attr_accessor :x, :y, :plateu, :rover, :commands, :command_array
 
   def command_rover(string)
-    set_up_array(string)
+    @command_array = string
     set_up_plateu_and_delete
     set_up_rover_and_send_commands
      while check_for_commands(@command_array)
@@ -14,10 +14,10 @@ class Control
   end
 
 
-  def set_up_array(string)
-    @command_array = string
-    @command_array = @command_array.split(',')
-  end
+  # def set_up_array(string)
+  #   @command_array = string
+  #   @command_array = @command_array.split('')
+  # end
 
   def set_up_plateu_and_delete
     set_up_plateu(@command_array)
@@ -28,7 +28,7 @@ class Control
     co_ordinates_for_rover(@command_array)
     delete_first_three(@command_array)
     commands_for_rover(@command_array)
-    rover.position
+    print_rover_position
     @command_array = delete_commands(@command_array)
   end
 
@@ -40,8 +40,13 @@ class Control
     reset_rover(@command_array)
     delete_first_three(@command_array)
     commands_for_rover(@command_array)
-    rover.position
+    print_rover_position
     @command_array = delete_commands(@command_array)
+  end
+
+
+  def print_rover_position
+    @rover.position
   end
 
 
@@ -74,12 +79,14 @@ class Control
 
   def set_up_rover(array)
     @rover = Rover.new('rover', array[0], array[1], array[2])
+    @rover.compass_no_conversion
   end
 
   def reset_rover(array)
     @rover.x = array[0].to_i
     @rover.y = array[1].to_i
-    @rover.direction = array[2]
+    @rover.compass_no = array[2]
+    @rover.compass_no_conversion
   end
 
   def commands_for_rover(array)

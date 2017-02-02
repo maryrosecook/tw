@@ -1,65 +1,48 @@
 class Rover
-  attr_accessor :name, :x, :y, :direction, :move
+  attr_accessor :name, :x, :y, :direction, :move, :compass_no
 
-  def initialize(name,x,y,direction)
+  def initialize(name,x,y,compass_no)
     @name = name
     @x = x
     @y = y
-    @direction = direction
+    @direction = ['N','E','S','W']
+    @compass_no = compass_no
   end
 
   def move(plateu)
     @plateu = plateu
-
-      case @direction
-      when 'N'
-        raise "I'm on the edge of the plateu! Turn me around!" if @y == @plateu.plateu.length
-          @y += 1
-      when 'S'
-        raise "I'm on the edge of the plateu! Turn me around!" if @y == 0
-          @y -= 1
-      when 'E'
-        raise "I'm on the edge of the plateu! Turn me around!" if @x == @plateu.plateu[0].length
-          @x += 1
-      when 'W'
-        raise "I'm on the edge of the plateu! Turn me around!"  if @x == 0
-          @x -= 1
+      case @compass_no
+      when 0
+         @y == @plateu.plateu.length ? raise_plateu_edge : @y += 1
+      when 2
+         @y == 0 ? raise_plateu_edge : @y -= 1
+      when 1
+        @x == @plateu.plateu[0].length ? raise_plateu_edge : @x += 1
+      when 3
+        @x == 0 ? raise_plateu_edge : @x -= 1
       end
+  end
+
+  def compass_no_conversion
+    @direction.each { |x| @compass_no = @direction.index(x) if @compass_no == x }
+  end
+
+  def raise_plateu_edge
+    raise "I'm on the edge of the plateu! Turn me around!"
   end
 
 
   def turn_left
-    case @direction
-    when 'N'
-      @direction = 'W'
-    when 'W'
-      @direction = 'S'
-    when 'S'
-      @direction = 'E'
-    when 'E'
-      @direction = 'N'
-    else
-      'There has been a problem turning left'
-    end
+    @compass_no == 0 ? @compass_no = 3 : @compass_no -= 1
   end
 
   def turn_right
-    case @direction
-    when 'N'
-      @direction = 'E'
-    when 'E'
-      @direction = 'S'
-    when 'S'
-      @direction = 'W'
-    when 'W'
-      @direction = 'N'
-    else
-      'There has been a problem turning right'
-    end
+    @compass_no == 3 ? @compass_no = 0 : @compass_no += 1
   end
 
   def position
-    p "The position of rover is #{@x}, #{@y}, #{@direction}"
+    number = @compass_no
+    p "The position of rover is #{@x}, #{@y}, #{@direction[number]}"
   end
 
 end

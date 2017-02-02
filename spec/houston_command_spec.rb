@@ -5,7 +5,9 @@ describe Houston_command do
   before(:each) do
     @houston_command = Houston_command.new
     @rover1 = Rover.new('rover1',1,3,'N')
+    @rover1.compass_no_conversion
     @rover2 = Rover.new('rover2',3,3,'E')
+    @rover2.compass_no_conversion
     @plateu = Plateu.new(5,5)
   end
 
@@ -20,15 +22,15 @@ describe Houston_command do
 
     describe 'Checks #rover_turn_left method' do
       it 'expects rover to return updated direction' do
-        expect { @houston_command.rover_turn_left(@rover1) }.to change{ @rover1.direction }.from('N').to('W')
-        expect { @houston_command.rover_turn_left(@rover2) }.to change{ @rover2.direction }.from('E').to('N')
+        expect { @houston_command.rover_turn_left(@rover1) }.to change{ @rover1.direction[@rover1.compass_no] }.from('N').to('W')
+        expect { @houston_command.rover_turn_left(@rover2) }.to change{ @rover2.direction[@rover2.compass_no] }.from('E').to('N')
       end
     end
 
     describe 'Checks #rover_turn_right method' do
       it 'expects rover to return updated direction' do
-        expect { @houston_command.rover_turn_right(@rover1) }.to change{ @rover1.direction }.from('N').to('E')
-        expect { @houston_command.rover_turn_right(@rover2) }.to change{ @rover2.direction }.from('E').to('S')
+        expect { @houston_command.rover_turn_right(@rover1) }.to change{ @rover1.direction[@rover1.compass_no] }.from('N').to('E')
+        expect { @houston_command.rover_turn_right(@rover2) }.to change{ @rover2.direction[@rover2.compass_no] }.from('E').to('S')
       end
     end
 

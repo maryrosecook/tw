@@ -16,7 +16,7 @@ class Plateu
 
 
   def update_position(rover)
-    @plateu[rover.y][rover.x] = "#{rover.direction}"
+    @plateu[rover.y][rover.x] = "#{rover.direction[rover.compass_no]}"
   end
 
   def print_plateu

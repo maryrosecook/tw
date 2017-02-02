@@ -5,7 +5,9 @@ describe Plateu do
     before(:each) do
       @plateu = Plateu.new(6,5)
       @rover1 = Rover.new('rover1',1,3,'N')
+      @rover1.compass_no_conversion
       @rover2 = Rover.new('rover2',3,3,'E')
+      @rover2.compass_no_conversion
     end
 
     describe 'Check the initialisation of plateu' do

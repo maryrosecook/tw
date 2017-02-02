@@ -13,12 +13,6 @@ describe Control do
     end
   end
 
-  describe '#set_up_array' do
-    it 'it expects set up the array' do
-      @control.set_up_array("5,5,1,2,N,L,M,L,M,L,M,L,M,M,3,3,E,M,M,R,M,M,R,M,R,R,M")
-      expect(@command_array).to eq ["5", "5", "1", "2", "N", "L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
-    end
-  end
 
   describe '#set_up_plateu' do
     it 'it expects that the plateau should be the right size' do
@@ -53,7 +47,7 @@ describe Control do
       @control.co_ordinates_for_rover(['1','1','N'])
       expect(@control.rover.x).to eq 1
       expect(@control.rover.y).to eq 1
-      expect(@control.rover.direction).to eq 'N'
+      expect(@control.rover.direction[@control.rover.compass_no]).to eq 'N'
     end
   end
 
