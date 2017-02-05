@@ -6,6 +6,8 @@ describe Control do
     @control = Control.new
     @command_array = ["5", "5", "1", "2", "N", "L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
     @control.set_up_plateu(@command_array)
+    @control.co_ordinates_for_rover(['1','2','N'])
+    @control.set_up_plateu([5,5])
   end
 
   describe '#command_rover' do
@@ -42,21 +44,15 @@ describe Control do
 
   describe '#co_ordinates_for_rover and #set_up_rover' do
     it 'it expects the rover to be set up in the correct position' do
-      expect { @control.co_ordinates_for_rover(['1','1','N']) }.to change{ @control.rover.x }.to 1
-
-      # expect(@control.rover.x).to eq 1
-      # expect(@control.rover.y).to eq 1
-      # expect(@control.rover.direction[@control.rover.compass_no]).to eq 'N'
+      expect(@control.rover.x).to eq 1
+      expect(@control.rover.y).to eq 2
+      expect(@control.rover.direction[@control.rover.compass_no]).to eq 'N'
     end
   end
 
   describe '#commands_for_rover' do
     it 'it expects the commands to be sent to the rover' do
-      @control.set_up_rover([1,2,'N'])
-      @control.set_up_plateu([5,5])
-      @control.commands_for_rover(["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"])
-      expect(@control.commands).to eq(["L", "M", "L", "M", "L", "M", "L", "M", "M"])
-      expect(@control.rover.position).to eq "The position of rover is 1, 3, N"
+      expect {puts @control.commands_for_rover(["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"])}.to output("L\nM\nL\nM\nL\nM\nL\nM\nM\n").to_stdout
     end
   end
 
