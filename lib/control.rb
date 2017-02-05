@@ -22,7 +22,7 @@ class Control
     co_ordinates_for_rover(@command_array)
     delete_first_three(@command_array)
     commands_for_rover(@command_array)
-    print_rover_position
+    show_rover
     @command_array = delete_commands(@command_array)
   end
 
@@ -34,16 +34,23 @@ class Control
     reset_rover(@command_array)
     delete_first_three(@command_array)
     commands_for_rover(@command_array)
-    print_rover_position
+    show_rover
     @command_array = delete_commands(@command_array)
   end
 
+  def show_rover
+    print_rover_position
+    print_plateu_map
+  end
 
   def print_rover_position
     @rover.position
   end
 
-
+  def print_plateu_map
+    @plateu.update_position(@rover)
+    @plateu.print_plateu
+  end
 
   def co_ordinates_for_rover(array)
     coords = []

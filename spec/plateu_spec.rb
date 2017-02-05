@@ -19,8 +19,8 @@ describe Plateu do
 
   describe 'Checks the #update_position method' do
     it 'expects the output of #update_position to be correct' do
-      expect { @plateu.update_position(@rover1) }.to change{@plateu.plateu[3][1]}.from('x').to('N')
-      expect { @plateu.update_position(@rover2) }.to change{@plateu.plateu[3][3]}.from('x').to('E')
+      expect { @plateu.update_position(@rover1) }.to change{@plateu.plateu[3- 1][1-1]}.from('x').to('N')
+      expect { @plateu.update_position(@rover2) }.to change{@plateu.plateu[3-1][3-1]}.from('x').to('E')
     end
   end
 

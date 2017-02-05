@@ -12,7 +12,7 @@ describe Control do
 
   describe '#command_rover' do
     it 'it expects to have the correct co-ordinates for the rover printed' do
-    expect { @control.command_rover(@command_array) }.to output("\"The position of rover is 1, 3, N\"\n\"The position of rover is 5, 1, E\"\n").to_stdout
+    expect { @control.command_rover(@command_array) }.to output("\"The position of rover is 1, 3, N\"\n  x  x  x  x  x\n  x  x  x  x  x\n  N  x  x  x  x\n  x  x  x  x  x\n  x  x  x  x  x\n\"The position of rover is 5, 1, E\"\n  x  x  x  x  x\n  x  x  x  x  x\n  N  x  x  x  x\n  x  x  x  x  x\n  x  x  x  x  E\n").to_stdout
     end
   end
 
@@ -53,6 +53,12 @@ describe Control do
   describe '#commands_for_rover' do
     it 'it expects the commands to be sent to the rover' do
       expect {puts @control.commands_for_rover(["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"])}.to output("L\nM\nL\nM\nL\nM\nL\nM\nM\n").to_stdout
+    end
+  end
+
+  describe '#print_plateu_map' do
+    it 'it expects the map to be printed with the rover position' do
+      expect {@control.print_plateu_map}.to output("  x  x  x  x  x\n  x  x  x  x  x\n  x  x  x  x  x\n  N  x  x  x  x\n  x  x  x  x  x\n").to_stdout
     end
   end
 
