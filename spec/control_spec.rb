@@ -5,6 +5,7 @@ describe Control do
   before(:each) do
     @control = Control.new
     @command_array = ["5", "5", "1", "2", "N", "L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
+    @control.set_up_plateu(@command_array)
   end
 
   describe '#command_rover' do
@@ -16,7 +17,6 @@ describe Control do
 
   describe '#set_up_plateu' do
     it 'it expects that the plateau should be the right size' do
-      @control.set_up_plateu(@command_array)
       expect(@control.plateu.plateu[0].length).to eq 5
       expect(@control.plateu.plateu.length).to eq 5
     end
@@ -35,19 +35,18 @@ describe Control do
   end
 
   describe '#delete_commands' do
-    it 'it expects that command array will change by two' do
-      @command_array = ["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]
-      @command_array = @control.delete_commands(@command_array)
-      expect(@command_array[0]).to eq "3"
+    it 'it expects that command array have all commands dropped prior to the next co-ordinates' do
+      expect {puts @control.delete_commands(["L", "M", "L", "M", "L", "M", "L", "M", "M", "3", "3", "E", "M", "M", "R", "M", "M", "R", "M", "R", "R", "M"])}.to output("3\n3\nE\nM\nM\nR\nM\nM\nR\nM\nR\nR\nM\n").to_stdout
     end
   end
 
   describe '#co_ordinates_for_rover and #set_up_rover' do
     it 'it expects the rover to be set up in the correct position' do
-      @control.co_ordinates_for_rover(['1','1','N'])
-      expect(@control.rover.x).to eq 1
-      expect(@control.rover.y).to eq 1
-      expect(@control.rover.direction[@control.rover.compass_no]).to eq 'N'
+      expect { @control.co_ordinates_for_rover(['1','1','N']) }.to change{ @control.rover.x }.to 1
+
+      # expect(@control.rover.x).to eq 1
+      # expect(@control.rover.y).to eq 1
+      # expect(@control.rover.direction[@control.rover.compass_no]).to eq 'N'
     end
   end
 
