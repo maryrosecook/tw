@@ -17,8 +17,16 @@ class Input
   end
 
   def start_input(path)
+    open_and_read_file(path)
+    format_file_contents(@contents)
+  end
+
+  def open_and_read_file(path)
     file = File.open(path, "r")
     @contents = file.read
+  end
+
+  def format_file_contents(contents)
     @contents = @contents.chomp.split('')
     @contents = @contents.each { |x| @contents.delete_at(@contents.index(x)) if x == "\n" || x == " "}
     @control.command_rover(@contents)
