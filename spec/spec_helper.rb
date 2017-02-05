@@ -104,5 +104,5 @@ require_relative '../lib/houston_command.rb'
 require_relative '../lib/plateu.rb'
 require_relative '../lib/rover.rb'
 require_relative '../lib/control.rb'
-#require_relative '../lib/input'
+require_relative '../lib/input.rb'
 end

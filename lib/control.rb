@@ -13,12 +13,6 @@ class Control
      end
   end
 
-
-  # def set_up_array(string)
-  #   @command_array = string
-  #   @command_array = @command_array.split('')
-  # end
-
   def set_up_plateu_and_delete
     set_up_plateu(@command_array)
     delete_first_two(@command_array)

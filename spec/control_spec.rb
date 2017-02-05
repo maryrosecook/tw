@@ -9,7 +9,7 @@ describe Control do
 
   describe '#command_rover' do
     it 'it expects to have the correct co-ordinates for the rover printed' do
-    expect { @control.command_rover("5,5,1,2,N,L,M,L,M,L,M,L,M,M,3,3,E,M,M,R,M,M,R,M,R,R,M") }.to output("\"The position of rover is 1, 3, N\"\n\"The position of rover is 5, 1, E\"\n").to_stdout
+    expect { @control.command_rover(@command_array) }.to output("\"The position of rover is 1, 3, N\"\n\"The position of rover is 5, 1, E\"\n").to_stdout
     end
   end
 

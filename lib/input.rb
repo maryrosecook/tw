@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 class Input
   require_relative './control'
 
@@ -27,6 +26,3 @@ class Input
 
 
 end
-
-@input = Input.new
-@input.get_input

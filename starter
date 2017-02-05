@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require_relative './lib/input.rb'
+
+input = Input.new
+input.get_input
